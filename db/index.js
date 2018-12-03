@@ -1,17 +1,16 @@
-//引入mongoose模块
+
+//创建数据库
 const mongoose = require('mongoose');
 
-module.exports = new Promise((resolve, reject) => {
-  //连接mongodb数据库
-  mongoose.connect('mongodb://localhost:27017/gzhipin1', {useNewUrlParser: true});
-  //绑定事件监听
-  mongoose.connection.once('open', err => {
-    if (!err) {
-      console.log('数据库连接成功了~');
-      resolve();
-    } else {
-      console.log(err);
-      reject();
-    }
-  })
-})
+      module.exports = new Promise((resolve, reject) => {
+          mongoose.connect('mongodb://localhost:27017/zhipin',{useNewUrlParser : true});
+          mongoose.connection.once('open',error => {
+              if(!error){
+                  console.log('数据库启动成功');
+                  resolve();
+              }else {
+                  console.log('数据库异常');
+                  reject();
+              }
+          })
+      })
